@@ -1,2 +1,31 @@
 <h1>Dashboard#index</h1>
 <p>Find me in app/views/dashboard/index.html.erb</p>
+
+<%= form_for(@account) do |f| %>
+
+  <div class="field">
+    <%= f.label :subdomain %><br />
+    <%= f.text_field :subdomain %>
+  </div>
+
+  <%= f.fields_for :users, :users do |builder| %>
+	  <div class="field">
+	    Email:<br />
+	    <%= builder.text_field :email %>
+	  </div>
+
+	  <div class="field">
+	    Password:<br />
+	    <%= builder.password_field :password %>
+	  </div>
+
+	  <div class="field">
+	    Password Confirmation:<br />
+	    <%= builder.password_field :password_confirmation %>
+	  </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

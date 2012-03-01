@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+<% if current_user %>
+	<p>
+	  <b>Subdomain:</b>
+	  <%= @account.subdomain %>
+	</p>
+
+<%= link_to 'Edit', edit_account_path(@account) %> |
+<%= link_to 'Back', accounts_path %>
+
+<% else %>
+
+<%= render :partial => 'sessions/login' %>
+
+<% end %>
+

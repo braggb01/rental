@@ -1,13 +1,44 @@
 Rental::Application.routes.draw do
 
-  get 'signup', to: 'users#new', as: 'signup'
-  get 'login', to: 'sessions#new', as: 'login'
-  get 'logout', to: 'sessions#destroy', as: 'logout'
+  class SubdomainRoute
 
-  resources :users
-  resources :sessions
+    def self.matches?(request)
+      request.subdomain.present? && request.subdomain != "www"
+    end
 
-  get "dashboard/index"
+  end
+
+  class NoSubdomainRoute
+
+    def self.matches?(request)
+      !request.subdomain.present?
+    end
+
+  end
+
+  
+  
+
+  constraints(NoSubdomainRoute) do
+    # get 'signup', to: 'accounts#new', as: 'signup'
+    get 'login', to: 'sessions#new', as: 'login'
+    get 'logout', to: 'sessions#destroy', as: 'logout'
+    resources :accounts
+    resources :users
+    resources :sessions
+  end
+
+  constraints(SubdomainRoute) do
+    match '', to: 'accounts#show'
+    # get 'signup', to: 'accounts#new', as: 'signup'
+    get 'login', to: 'sessions#new', as: 'login'
+    get 'logout', to: 'sessions#destroy', as: 'logout'
+    resources :accounts
+    resources :users
+    resources :sessions
+  end
+
+  root :to => 'accounts#new'
 
 
 
@@ -60,7 +91,7 @@ Rental::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'dashboard#index'
+
 
   # See how all your routes lay out with "rake routes"
 
