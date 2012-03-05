@@ -1,13 +1,33 @@
-<h1>Log In</h1>
+<div class="span6 offset3">
+	<%= form_tag sessions_path, :class => " form-horizontal well" do %>
+		<fieldset>
+			<legend>Please Sign In</legend>
+			<div class="control-group">
+	    		<%= label_tag :email, nil, :class => "control-label" %>
+	    		<div class="controls">
+	    			<%= text_field_tag :email, params[:email] %>
+	    		</div>
+	    	</div>
+			<div class="control-group">
+	    		<%= label_tag :password, nil, :class => "control-label" %>
+	    		<div class="controls">
+	    			<%= password_field_tag :password %>
+	    		</div>
+	    	</div>
+	    	<hr/>
+			<%= submit_tag "Log In", :class => "btn btn-primary pull-right" %>
+	    </fieldset>
+	<% end %>
+</div>
 
-<%= form_tag sessions_path do %>
-  <div class="field">
-    <%= label_tag :email %><br />
-    <%= text_field_tag :email, params[:email] %>
-  </div>
-  <div class="field">
-    <%= label_tag :password %><br />
-    <%= password_field_tag :password %>
-  </div>
-  <div class="actions"><%= submit_tag "Log In" %></div>
-<% end %>
+<!-- <div class="span4 offset4">
+	<%= form_tag sessions_path, :class => " form-horizontal well" do %>
+		<legend>Log In</legend>
+    	<%= label_tag :email %>
+    	<%= text_field_tag :email, params[:email] %>
+    	<%= label_tag :password %>
+    	<%= password_field_tag :password %>
+    	<hr/>
+	  	<%= submit_tag "Log In", :class => "btn btn-primary" %>
+	<% end %>
+</div> -->

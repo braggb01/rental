@@ -38,6 +38,7 @@ Rental::Application.routes.draw do
     resources :accounts
     resources :users
     resources :sessions
+    get 'dashboard', to: 'dashboard#index', as: 'dashboard'
   end
 
   # root :to => 'accounts#new'

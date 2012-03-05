@@ -1,7 +1,6 @@
 class AccountsController < ApplicationController
   # before_filter :authorize, only: [:edit, :update, :show]
   # before_filter :load_account
-  layout "site", :except => [:index, :show, :edit]
   # GET /accounts
   # GET /accounts.json
   def index
@@ -18,9 +17,8 @@ class AccountsController < ApplicationController
   def show
     @account = Account.find_by_subdomain!(request.subdomain)
     #@account = Account.find(params[:id])
-
     respond_to do |format|
-      format.html # show.html.erb
+      format.html { render :layout => "site" if current_user.nil? }# show.html.erb
       format.json { render json: @account }
     end
   end
