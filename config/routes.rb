@@ -1,5 +1,7 @@
 Rental::Application.routes.draw do
 
+  get "home/index"
+
   class SubdomainRoute
 
     def self.matches?(request)
@@ -20,7 +22,7 @@ Rental::Application.routes.draw do
   
 
   constraints(NoSubdomainRoute) do
-    # get 'signup', to: 'accounts#new', as: 'signup'
+    get 'signup', to: 'accounts#new', as: 'signup'
     get 'login', to: 'sessions#new', as: 'login'
     get 'logout', to: 'sessions#destroy', as: 'logout'
     resources :accounts
@@ -38,7 +40,8 @@ Rental::Application.routes.draw do
     resources :sessions
   end
 
-  root :to => 'accounts#new'
+  # root :to => 'accounts#new'
+  root :to => 'home#index'
 
 
 
