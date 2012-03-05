@@ -23,10 +23,13 @@
 		    <%= link_to auto_title, root_url, :class => 'brand' %>
 		    <div class="nav-collapse">
 		      <ul class="nav">
-		        <li><%= link_to "Browse Products" %></li>
-		        <li><%= link_to "Price List" %></li>
-		        <li><%= link_to "Contact Us" %></li>
-		        <li><%= link_to "Cart" %></li>
+		        <li><%= link_to "Tour" %></li>
+		        <li><%= link_to "Pricing & Sign Up" %></li>
+		        <li><%= link_to "Why Us" %></li>
+		        <li><%= link_to "About" %></li>
+		      </ul>
+		      <ul class="nav nav-pills pull-right">
+		      	<li class="active"><%= link_to "Sign Up", signup_url %></li>
 		      </ul>
 		    </div>
 		  </div>
@@ -35,34 +38,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="span12">
-				<% flash.each do |name, msg| %>
-				  <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
-				    <a class="close" data-dismiss="alert">×</a>
-				    <%= msg %>
-				  </div>
-				<% end %>
-			</div>
-		</div>
-	</div>
-	<div class="container">
-		<div class="row">
-			<div class="span12">
-				<% if current_user %>
-				  Logged in as <%= current_user.email %>.
-				  <%= link_to "Log Out", logout_path %>
-				<% elsif !request.subdomain.present? %>
-				<% elsif request.subdomain.present? %>
-				<% else %>
-				  <%= link_to "Sign Up", root_url(:subdomain => false) %> or
-				  <%= link_to "Log In", login_path %>
-				<% end %>
-			</div>
-		</div>
-		<div class="row">
-			<div class="span9">
 				<%= yield %>
-			</div>
-			<div class="span3">
 			</div>
 		</div>
 	</div>

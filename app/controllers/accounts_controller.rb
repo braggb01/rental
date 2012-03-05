@@ -1,6 +1,7 @@
 class AccountsController < ApplicationController
   # before_filter :authorize, only: [:edit, :update, :show]
   # before_filter :load_account
+  layout "site", :except => [:index, :show, :edit]
   # GET /accounts
   # GET /accounts.json
   def index

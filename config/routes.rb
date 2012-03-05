@@ -1,6 +1,6 @@
 Rental::Application.routes.draw do
 
-  get "home/index"
+  # get "home/index"
 
   class SubdomainRoute
 
